@@ -31,3 +31,10 @@ display:block
 *{
   font-family: Outfit;
 }
+
+@media (max-width:640px) {
+  a.active{
+    background-color: black;
+    color: white;
+  }
+}
