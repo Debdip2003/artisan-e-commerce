@@ -8,10 +8,90 @@ const Collection = () => {
   const { products } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [subCategory, setSubCategory] = useState([]);
+
+  const toggleCategory = (e) => {
+    if (category.includes(e.target.value)) {
+      setCategory((prev) => prev.filter((item) => item !== e.target.value));
+    } else {
+      setCategory((prev) => [...prev, e.target.value]);
+    }
+  };
+
+  const togglesubCategory = (e) => {
+    if (subCategory.includes(e.target.value)) {
+      setSubCategory((prev) => prev.filter((item) => item !== e.target.value));
+    } else {
+      setSubCategory((prev) => [...prev, e.target.value]);
+    }
+  };
+
+  // const applyFilter = () => {
+  //   let productsCopy = products.slice();
+  //   if (category.length > 0) {
+  //     productsCopy = productsCopy.filter((item) =>
+  //       category.includes(item.category)
+  //     );
+  //   }
+  //   if (subCategory.length > 0) {
+  //     productsCopy = productsCopy.filter(
+  //       (item) => subCategory.includes(item.subCategory)
+  //     );
+  //   }
+  //   setFilterProducts(productsCopy);
+  // };
+
+  // const applyFilter = () => {
+  //   let productsCopy = products.slice(); //creates a shallow copy of the array, so that we can work on the copy insstead of changing the actual array completely
+  //   if (category.length > 0) {
+  //     productsCopy = productsCopy.filter((item) =>
+  //       category.includes(item.category)
+  //     );
+  //   } //checks if the category array (which holds selected categories) has any items. If it does, it filters productsCopy to only include items whose category matches one of the categories in the category array.
+  //   if (subCategory.length > 0) {
+  //     productsCopy = productsCopy.filter((item) =>
+  //       subCategory.includes(item.subCategory)
+  //     );
+  //   } //Similar to the category filtering
+  //   setFilterProducts(productsCopy);
+  // };
 
   useEffect(() => {
-    setFilterProducts(products);
-  }, [products]);
+    const applyFilter = () => {
+      let productsCopy = products.slice();
+      if (category.length > 0) {
+        productsCopy = productsCopy.filter((item) =>
+          category.includes(item.category)
+        );
+      }
+      if (subCategory.length > 0) {
+        productsCopy = productsCopy.filter((item) =>
+          subCategory.includes(item.subCategory)
+        );
+      }
+      setFilterProducts(productsCopy);
+    };
+  
+    applyFilter();
+  }, [category, subCategory, products]);
+
+  
+  // useEffect(() => {
+  //   setFilterProducts(products);
+  // }, [products]);
+
+  // useEffect(() => {
+  //   applyFilter();
+  // }, [category, subCategory]);
+
+  // useEffect(()=>{
+  //   console.log(category)
+  // },[category])
+
+  // useEffect(()=>{
+  //   console.log(subCategory)
+  // },[subCategory])
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
@@ -37,17 +117,35 @@ const Collection = () => {
           <p className="mb-3 text-sm font-medium">CATEGORIES</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
             <p className="flex gap-2">
-              <input type="checkbox" className="w-3" value={"MEN"} /> Men
+              <input
+                type="checkbox"
+                className="w-3"
+                value={"Men"}
+                onChange={toggleCategory}
+              />{" "}
+              Men
             </p>
             <p className="flex gap-2">
-              <input type="checkbox" className="w-3" value={"WOMEN"} /> Women
+              <input
+                type="checkbox"
+                className="w-3"
+                value={"Women"}
+                onChange={toggleCategory}
+              />{" "}
+              Women
             </p>
             <p className="flex gap-2">
-              <input type="checkbox" className="w-3" value={"KIDS"} /> Kids
+              <input
+                type="checkbox"
+                className="w-3"
+                value={"Kids"}
+                onChange={toggleCategory}
+              />{" "}
+              Kids
             </p>
           </div>
         </div>
-        {/* Subcategory Filter */}
+        {/* subCategory Filter */}
         <div
           className={`border border-gray-300 pl-5 py-3 mt-6 ${
             showFilter ? "" : "hidden"
@@ -56,15 +154,30 @@ const Collection = () => {
           <p className="mb-3 text-sm font-medium">TYPE</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
             <p className="flex gap-2">
-              <input type="checkbox" className="w-3" value={"Topwear"} />{" "}
+              <input
+                type="checkbox"
+                className="w-3"
+                value={"Topwear"}
+                onChange={togglesubCategory}
+              />{" "}
               Topwear
             </p>
             <p className="flex gap-2">
-              <input type="checkbox" className="w-3" value={"Bottomwear"} />{" "}
+              <input
+                type="checkbox"
+                className="w-3"
+                value={"Bottomwear"}
+                onChange={togglesubCategory}
+              />{" "}
               Bottomwear
             </p>
             <p className="flex gap-2">
-              <input type="checkbox" className="w-3" value={"Winterwear"} />{" "}
+              <input
+                type="checkbox"
+                className="w-3"
+                value={"Winterwear"}
+                onChange={togglesubCategory}
+              />{" "}
               Winterwear
             </p>
           </div>
@@ -84,13 +197,15 @@ const Collection = () => {
         {/* Map Products */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
           {filterProducts.map((item, index) => {
-           return <ProductItem
-              key={index}
-              name={item.name}
-              id={item._id}
-              price={item.price}
-              image={item.image}
-            />;
+            return (
+              <ProductItem
+                key={index}
+                name={item.name}
+                id={item._id}
+                price={item.price}
+                image={item.image}
+              />
+            );
           })}
         </div>
       </div>
