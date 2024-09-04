@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "..//assets/frontend_assets/assets";
 import { Link, NavLink } from "react-router-dom";
+import { ShopContext } from "../context/ShopContext";
 
 const NavBar = () => {
   const [visible, setVisible] = useState(false);
+  const { setShowSearch } = useContext(ShopContext);
 
   return (
     <div className="flex items-center justify-between py-5 font-medium">
-     <Link to={'/'}> <img src={assets.logo} alt="logo" className="w-36" /></Link>
+      <Link to={"/"}>
+        {" "}
+        <img src={assets.logo} alt="logo" className="w-36" />
+      </Link>
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
         <NavLink className="flex flex-col items-center gap-1" to="/">
           <p>HOME</p>
@@ -32,6 +37,7 @@ const NavBar = () => {
           src={assets.search_icon}
           alt="search_icon"
           className="w-5 cursor-pointer"
+          onClick={()=>setShowSearch(true)}
         />
         <div className="group relative">
           <img
@@ -69,14 +75,45 @@ const NavBar = () => {
         }`}
       >
         <div className="flex flex-col text-gray-600 ">
-            <div className="flex items-center gap-4 p-3 cursor-pointer"  onClick={()=>setVisible(false)}>
-                <img src={assets.dropdown_icon} className="h-4 rotate-180" alt="dropdown_menu"/>
-                <p>Back</p>
-            </div>
-            <NavLink to='/' className="py-2 pl-6 border" onClick={()=>setVisible(false)}>HOME</NavLink>
-            <NavLink to='/collections' className="py-2 pl-6 border" onClick={()=>setVisible(false)}>COLLECTIONS</NavLink>
-            <NavLink to='/about' className="py-2 pl-6 border" onClick={()=>setVisible(false)}>ABOUT</NavLink>
-            <NavLink to='/contact' className="py-2 pl-6 border" onClick={()=>setVisible(false)}>CONTACT</NavLink>
+          <div
+            className="flex items-center gap-4 p-3 cursor-pointer"
+            onClick={() => setVisible(false)}
+          >
+            <img
+              src={assets.dropdown_icon}
+              className="h-4 rotate-180"
+              alt="dropdown_menu"
+            />
+            <p>Back</p>
+          </div>
+          <NavLink
+            to="/"
+            className="py-2 pl-6 border"
+            onClick={() => setVisible(false)}
+          >
+            HOME
+          </NavLink>
+          <NavLink
+            to="/collections"
+            className="py-2 pl-6 border"
+            onClick={() => setVisible(false)}
+          >
+            COLLECTIONS
+          </NavLink>
+          <NavLink
+            to="/about"
+            className="py-2 pl-6 border"
+            onClick={() => setVisible(false)}
+          >
+            ABOUT
+          </NavLink>
+          <NavLink
+            to="/contact"
+            className="py-2 pl-6 border"
+            onClick={() => setVisible(false)}
+          >
+            CONTACT
+          </NavLink>
         </div>
       </div>
     </div>
