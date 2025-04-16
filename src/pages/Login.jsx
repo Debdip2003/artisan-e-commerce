@@ -9,16 +9,16 @@ const Login = () => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    // Here you would typically handle authentication
-    // For demo purposes, we'll just redirect if Artisan is selected
     if (activeTab === "Artisan") {
       navigate("/artisan-dashboard");
+    } else if (activeTab === "Volunteer") {
+      navigate("/volunteer-dashboard");
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-3xl bg-white shadow-2xl rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+    <div className="min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-5xl bg-white shadow-2xl rounded-3xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
         {/* Image Section */}
         <div className="hidden md:block bg-gray-100">
           <img
@@ -29,28 +29,27 @@ const Login = () => {
         </div>
 
         {/* Form Section */}
-        <div className="p-8 sm:p-10">
-          {/* Logo and Heading */}
-          <div className="text-center mb-6">
+        <div className="p-10 md:p-12">
+          {/* Branding */}
+          <div className="text-center mb-8">
             <img
               src={assets.logo}
               alt="Sahaj Logo"
-              className="w-20 h-20 mx-auto mb-2"
+              className="w-full h-full mx-auto mb-3"
             />
-            <h2 className="text-3xl font-extrabold text-gray-900">Sahaj</h2>
             <p className="text-sm text-gray-500">Empowering Artisans with AI</p>
           </div>
 
-          {/* User/Artisan Tabs */}
-          <div className="flex justify-center gap-4 mb-6 border-b pb-3">
-            {["User", "Artisan"].map((tab) => (
+          {/* Tabs */}
+          <div className="flex justify-center rounded-full mb-8">
+            {["User", "Artisan", "Volunteer"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 py-1 text-base font-medium transition-all duration-300 border-b-2 ${
+                className={`px-6 py-2 ml-2 text-sm font-medium rounded-full transition ${
                   activeTab === tab
-                    ? "border-black text-black"
-                    : "border-transparent text-gray-500 hover:text-black hover:border-black"
+                    ? "bg-black text-white"
+                    : "text-gray-700 hover:bg-gray-300"
                 }`}
               >
                 {tab}
@@ -58,18 +57,20 @@ const Login = () => {
             ))}
           </div>
 
+          {/* Form */}
           <form onSubmit={onSubmitHandler} className="space-y-4">
-            <div className="text-center">
-              <p className="text-2xl font-semibold">
+            <div className="text-center mb-4">
+              <h3 className="text-xl font-semibold text-gray-800">
                 {currentState === "Login" ? "Sign In" : "Sign Up"}
-              </p>
+              </h3>
               <p className="text-sm text-gray-500">
                 {currentState === "Login"
                   ? "Welcome back! Please login to continue."
-                  : "Create an account to get started."}
+                  : "Create your account to get started."}
               </p>
             </div>
 
+            {/* User Fields */}
             {activeTab === "User" && (
               <>
                 {currentState !== "Login" && (
@@ -77,162 +78,234 @@ const Login = () => {
                     type="text"
                     placeholder="Full Name"
                     required
-                    className="input-field"
+                    className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                   />
                 )}
                 <input
                   type="email"
                   placeholder="Email Address"
                   required
-                  className="input-field"
+                  className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   required
-                  className="input-field"
+                  className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                 />
                 {currentState !== "Login" && (
                   <>
                     <textarea
                       placeholder="Delivery Address"
                       required
-                      className="input-field"
                       rows="2"
-                    ></textarea>
-                    <input
-                      type="text"
-                      placeholder="City"
-                      required
-                      className="input-field"
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
-                    <input
-                      type="text"
-                      placeholder="State"
-                      required
-                      className="input-field"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Country"
-                      required
-                      className="input-field"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Postal Code"
-                      required
-                      className="input-field"
-                    />
+                    <div className="grid grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        placeholder="City"
+                        required
+                        className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                      />
+                      <input
+                        type="text"
+                        placeholder="State"
+                        required
+                        className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        placeholder="Country"
+                        required
+                        className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Postal Code"
+                        required
+                        className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                      />
+                    </div>
                   </>
                 )}
-                <div className="flex justify-between text-sm text-gray-600">
-                  <span className="cursor-pointer hover:underline">
-                    Forgot your password?
-                  </span>
-                  <span
-                    className="cursor-pointer hover:text-black"
-                    onClick={() =>
-                      setCurrentState(
-                        currentState === "Login" ? "Sign Up" : "Login"
-                      )
-                    }
-                  >
-                    {currentState === "Login"
-                      ? "Create account"
-                      : "Already have an account? Login"}
-                  </span>
-                </div>
               </>
             )}
 
+            {/* Artisan Fields */}
             {activeTab === "Artisan" && (
               <>
-                <input
-                  type="text"
-                  placeholder="Artisan ID"
-                  required
-                  className="input-field"
-                />
                 {currentState !== "Login" ? (
                   <>
                     <input
                       type="text"
                       placeholder="Full Name"
                       required
-                      className="input-field"
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Gender"
+                      required
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                     <input
                       type="password"
                       placeholder="Password"
                       required
-                      className="input-field"
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                     <input
                       type="password"
                       placeholder="Retype Password"
                       required
-                      className="input-field"
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                     <input
                       type="text"
-                      placeholder="Language"
-                      className="input-field"
+                      placeholder="Address"
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
+
                     <input
                       type="text"
-                      placeholder="Location"
-                      className="input-field"
+                      placeholder="Date of Birth (DD-MM-YYYY)"
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
+                    <input
+                      type="number"
+                      placeholder="Phone Number "
+                      required
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+                    <input
+                      type="file"
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+                    <input
+                      type="file"
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+                  </>
+                ) : (
+                  <>
                     <input
                       type="text"
-                      placeholder="Skillset"
-                      className="input-field"
+                      placeholder="Artisan ID"
+                      required
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                     <input
-                      type="date"
-                      placeholder="Registration Date"
-                      className="input-field"
+                      type="password"
+                      placeholder="Password"
+                      required
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+                  </>
+                )}
+              </>
+            )}
+
+            {/* Volunteer registration */}
+            {activeTab === "Volunteer" && (
+              <>
+                {currentState !== "Login" ? (
+                  <>
+                    <input
+                      type="text"
+                      placeholder="Full Name"
+                      required
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      required
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+                    <input
+                      type="password"
+                      placeholder="Retype Password"
+                      required
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+
+                    <input
+                      type="text"
+                      placeholder="Address"
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+
+                    <input
+                      type="text"
+                      placeholder="Date of Birth (DD-MM-YYYY)"
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                     <input
                       type="tel"
-                      placeholder="Phone Number (optional)"
-                      className="input-field"
+                      placeholder="Phone Number"
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                     <input
                       type="email"
                       placeholder="Email (optional)"
-                      className="input-field"
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+                    <input
+                      type="file"
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                   </>
                 ) : (
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    required
-                    className="input-field"
-                  />
+                  <>
+                    <input
+                      type="text"
+                      placeholder="Volunteer ID"
+                      required
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      required
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+                  </>
                 )}
-                <div className="text-right text-sm text-gray-600">
-                  <span
-                    className="cursor-pointer hover:text-black"
-                    onClick={() =>
-                      setCurrentState(
-                        currentState === "Login" ? "Sign Up" : "Login"
-                      )
-                    }
-                  >
-                    {currentState === "Login"
-                      ? "Register as Artisan"
-                      : "Already registered? Login"}
-                  </span>
-                </div>
               </>
             )}
 
+            {/* Switch Login/Signup */}
+            <div className="flex justify-between text-sm text-gray-600">
+              {activeTab === "User" && (
+                <span className="cursor-pointer hover:underline">
+                  Forgot password?
+                </span>
+              )}
+              <span
+                className="cursor-pointer hover:text-black font-medium"
+                onClick={() =>
+                  setCurrentState(
+                    currentState === "Login" ? "Sign Up" : "Login"
+                  )
+                }
+              >
+                {currentState === "Login"
+                  ? activeTab === "User"
+                    ? "Create account"
+                    : activeTab === "Volunteer"
+                    ? "Create Volunteer account"
+                    : "Create Artisan account"
+                  : "Already have an account?"}
+              </span>
+            </div>
+
+            {/* Submit */}
             <button
               type="submit"
-              className="w-full bg-black text-white py-2 rounded-md text-lg font-medium hover:bg-gray-800 transition"
+              className="w-full bg-black text-white py-2 rounded-lg text-lg font-semibold hover:bg-gray-800 transition"
             >
               {currentState === "Login" ? "Sign In" : "Sign Up"}
             </button>
@@ -240,9 +313,26 @@ const Login = () => {
         </div>
       </div>
 
+      {/* Tailwind Utility Classes as Custom Component Styles */}
       <style jsx>{`
-        .input-field {
-          @apply w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black;
+        .w-full
+          px-5
+          py-3
+          text-base
+          border
+          border-gray-400
+          rounded-lg
+          bg-white
+          shadow-md
+          placeholder-gray-500
+          focus:outline-none
+          focus:ring-2
+          focus:ring-black
+          focus:border-black
+          transition-all
+          duration-200
+          ease-in-out {
+          @apply w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black transition;
         }
       `}</style>
     </div>

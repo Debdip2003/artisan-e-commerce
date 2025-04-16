@@ -3,80 +3,116 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 const PricingDetails = () => {
-  const { productId } = useParams();
-  
-  // Pricing data for different products
+  const { id } = useParams();
+  const productId = parseInt(id);
+
   const pricingData = {
-    1: { // Handwoven Silk Shawl (₹1299)
+    1: {
       productName: "Handwoven Silk Shawl",
       artisanAmount: 1000,
       gst: 180,
       delivery: 20,
       platformFee: 99,
-      total: 1299
+      total: 1299,
     },
-    4: { // Block Printed Cotton Saree (₹1499)
+    2: {
+      productName: "Handwoven Silk Shawl",
+      artisanAmount: 1000,
+      gst: 180,
+      delivery: 20,
+      platformFee: 99,
+      total: 1299,
+    },
+    3: {
+      productName: "Handwoven Silk Shawl",
+      artisanAmount: 1000,
+      gst: 180,
+      delivery: 20,
+      platformFee: 99,
+      total: 1299,
+    },
+    4: {
       productName: "Block Printed Cotton Saree",
       artisanAmount: 1200,
       gst: 216,
       delivery: 20,
       platformFee: 63,
-      total: 1499
-    }
+      total: 1499,
+    },
+    5: {
+      productName: "Handwoven Silk Shawl",
+      artisanAmount: 1000,
+      gst: 180,
+      delivery: 20,
+      platformFee: 99,
+      total: 1299,
+    },
   };
 
-  // Get the pricing for the current product or use default
   const currentPricing = pricingData[productId] || {
-    productName: "Product",
+    productName: "Product Not Found",
     artisanAmount: 0,
     gst: 0,
     delivery: 0,
     platformFee: 0,
-    total: 0
+    total: 0,
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden p-6 space-y-6">
-        <div className="text-center">
-          <h2 className="text-xl font-bold text-gray-800">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 flex items-center justify-center p-6">
+      <div className="w-full max-w-lg bg-white rounded-3xl shadow-xl p-8 space-y-6">
+        <div className="text-center mb-6">
+          <h1 className="text-3xl font-extrabold text-gray-800 mb-2">
             Pricing Breakdown
-          </h2>
-          <p className="text-sm text-gray-500 mt-1">
-            {currentPricing.productName} (ID: {productId})
+          </h1>
+          <p className="text-lg text-gray-600">
+            <span className="font-medium text-gray-800">
+              {currentPricing.productName}
+            </span>{" "}
+            (Product ID: {id})
           </p>
         </div>
 
-        <div className="space-y-4 text-sm text-gray-700">
-          <div className="flex justify-between border-b pb-2">
-            <span>Amount paid to artisan</span>
-            <span className="font-medium">₹{currentPricing.artisanAmount.toFixed(2)}</span>
+        <div className="divide-y divide-gray-200 text-gray-700 space-y-4">
+          <div className="flex justify-between pt-4">
+            <span>Amount Paid to Artisan</span>
+            <span className="font-semibold text-gray-900">
+              ₹{currentPricing.artisanAmount.toFixed(2)}
+            </span>
           </div>
-          <div className="flex justify-between border-b pb-2">
+          <div className="flex justify-between pt-4">
             <span>GST (18%)</span>
-            <span className="font-medium">₹{currentPricing.gst.toFixed(2)}</span>
+            <span className="font-semibold text-gray-900">
+              ₹{currentPricing.gst.toFixed(2)}
+            </span>
           </div>
-          <div className="flex justify-between border-b pb-2">
+          <div className="flex justify-between pt-4">
             <span>Delivery Fee</span>
-            <span className="font-medium">₹{currentPricing.delivery.toFixed(2)}</span>
+            <span className="font-semibold text-gray-900">
+              ₹{currentPricing.delivery.toFixed(2)}
+            </span>
           </div>
-          <div className="flex justify-between border-b pb-2">
+          <div className="flex justify-between pt-4">
             <span>Platform Fee</span>
-            <span className="font-medium">₹{currentPricing.platformFee.toFixed(2)}</span>
+            <span className="font-semibold text-gray-900">
+              ₹{currentPricing.platformFee.toFixed(2)}
+            </span>
           </div>
         </div>
 
-        <div className="border-t pt-4 flex justify-between items-center text-base font-semibold text-gray-900">
+        <div className="border-t pt-4 flex justify-between items-center text-lg font-bold text-gray-900">
           <span>Total (Paid by Buyer)</span>
-          <span>₹{currentPricing.total.toFixed(2)}</span>
+          <span className="text-green-600">
+            ₹{currentPricing.total.toFixed(2)}
+          </span>
         </div>
 
-        <div className="text-center">
-          <button 
+        <div className="text-center pt-6">
+          <button
             onClick={() => window.history.back()}
-            className="mt-4 bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-md text-sm font-medium transition"
+            className="inline-block bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-lg text-lg font-medium transition duration-300 ease-in-out transform hover:scale-105"
           >
-            Back to Dashboard
+            ← Back to Dashboard
           </button>
         </div>
       </div>
