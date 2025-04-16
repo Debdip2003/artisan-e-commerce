@@ -31,5 +31,4 @@ const RelatedProducts = ({ category, subCategory }) => {
     </div>
   );
 };
-
 export default RelatedProducts;

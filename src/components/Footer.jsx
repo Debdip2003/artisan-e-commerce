@@ -1,44 +1,49 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { assets } from "../assets/frontend_assets/assets";
 
 const Footer = () => {
   return (
-    <div>
-      <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm">
+    <footer className="mt-32 bg-white border-t pt-10 px-6 sm:px-10">
+      <div className="grid sm:grid-cols-[3fr_1fr_1fr] gap-10 max-w-7xl mx-auto text-sm text-gray-600">
         <div>
-          <img src={assets.logo} alt="logo" className="mb-5 w-32" />
-          <p className="w-full md:w-2/3 text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-            doloribus exercitationem soluta odit perspiciatis numquam qui
-            cupiditate laborum voluptate distinctio iusto optio, explicabo error
-            corrupti illum quos, quasi reprehenderit aspernatur!
+          <img src={assets.logo} alt="Sahaj Logo" className="mb-4 w-36" />
+          <p className="max-w-sm leading-relaxed">
+            Empowering local artisans with AI-driven solutions. Sahaj brings handmade excellence to your fingertips while supporting sustainable, local craftsmanship.
           </p>
         </div>
+
         <div>
-          <p className="text-xl font-medium mb-5">COMPANY</p>
-          <ul className="flex flex-col gap-1 text-gray-600">
-            <li>Home</li>
-            <li>About us</li>
-            <li>Delivery</li>
-            <li>Privacy Policy</li>
+          <h4 className="text-lg font-semibold mb-4 text-gray-800">Company</h4>
+          <ul className="space-y-2">
+            <li>
+              <Link to="/" className="hover:underline cursor-pointer">Home</Link>
+            </li>
+            <li>
+              <Link to="/about" className="hover:underline cursor-pointer">About Us</Link>
+            </li>
+            <li>
+              <Link to="/delivery" className="hover:underline cursor-pointer">Delivery</Link>
+            </li>
+            <li>
+              <Link to="/policies" className="hover:underline cursor-pointer">Privacy Policy</Link>
+            </li>
           </ul>
         </div>
 
         <div>
-          <p className="text-xl font-medium mb-5">GET IN TOUCH</p>
-          <ul className="flex flex-col gap-1 text-gray-600">
-            <li>+91 9007245362</li>
-            <li>forever@gmail.com</li>
+          <h4 className="text-lg font-semibold mb-4 text-gray-800">Get in Touch</h4>
+          <ul className="space-y-2">
+            <li>📞 +91 7029081087</li>
+            <li>📧 sahaj@gmail.com</li>
           </ul>
         </div>
       </div>
-      <div>
-        <hr />
-        <p className="py-5 text-sm text-center">
-          Copyright 2024@ forever.com - All Right Reserved
-        </p>
+
+      <div className="border-t mt-10 pt-5 text-center text-xs text-gray-500">
+        © 2024 Sahaj - AI for Artisans. All Rights Reserved.
       </div>
-    </div>
+    </footer>
   );
 };
 

@@ -1,0 +1,126 @@
+.artisan-pricing-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .subtitle {
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  .artisans-list {
+    margin-top: 20px;
+  }
+  
+  .artisan-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .artisan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .artisan-header:hover {
+    background-color: #e9ecef;
+  }
+  
+  .toggle-icon {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .products-list {
+    padding: 15px;
+    background-color: #fff;
+  }
+  
+  .product-card {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fcfcfc;
+  }
+  
+  .product-card h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+  }
+  
+  .cost-breakdown, .pricing-info, .inventory-info {
+    margin-bottom: 15px;
+  }
+  
+  .cost-breakdown h4, .pricing-info h4, .inventory-info h4 {
+    margin-bottom: 10px;
+    color: #34495e;
+  }
+  
+  .cost-breakdown ul, .pricing-info ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .cost-breakdown li, .pricing-info li {
+    margin-bottom: 5px;
+    padding: 5px 0;
+  }
+  
+  .total-cost {
+    font-weight: bold;
+    border-top: 1px solid #eee;
+    margin-top: 5px;
+    padding-top: 8px !important;
+  }
+  
+  .inventory-bar {
+    display: flex;
+    height: 30px;
+    margin: 10px 0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .sold-bar {
+    background-color: #27ae60;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  .remaining-bar {
+    background-color: #e74c3c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  @media (min-width: 768px) {
+    .product-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+    
+    .product-card h3 {
+      grid-column: 1 / -1;
+    }
+  }

@@ -1,16 +1,14 @@
-import p_img1 from './p_img1.png'
-import p_img2_1 from './p_img2_1.png'
-import p_img2_2 from './p_img2_2.png'
-import p_img2_3 from './p_img2_3.png'
-import p_img2_4 from './p_img2_4.png'
-import p_img3 from './p_img3.png'
-import p_img4 from './p_img4.png'
-import p_img5 from './p_img5.png'
-import p_img6 from './p_img6.png'
-import p_img7 from './p_img7.png'
-import p_img8 from './p_img8.png'
-import p_img9 from './p_img9.png'
-import p_img10 from './p_img10.png'
+import p_img1 from './p_img1.jpg'
+import p_img2 from './p_img2.jpg'
+
+import p_img3 from './p_img3.jpg'
+import p_img4 from './p_img4.jpg'
+import p_img5 from './p_img5.jpg'
+import p_img6 from './p_img6.jpg'
+import p_img7 from './p_img7.jpg'
+import p_img8 from './p_img8.jpg'
+import p_img9 from './p_img9.jpg'
+import p_img10 from './p_img10.jpg'
 import p_img11 from './p_img11.png'
 import p_img12 from './p_img12.png'
 import p_img13 from './p_img13.png'
@@ -56,7 +54,11 @@ import p_img52 from './p_img52.png'
 
 
 import logo from './logo.png'
-import hero_img from './hero_img.png'
+import hero_login from './hero_login.jpg'
+import hero_img from './hero_img.jpg'
+import hero_img1 from './hero_img1.jpeg'
+import hero_img2 from './hero_img2.jpg'
+import hero_img3 from './hero_img3.jpg'
 import cart_icon from './cart_icon.png'
 import bin_icon from './bin_icon.png'
 import dropdown_icon from './dropdown_icon.png'
@@ -69,14 +71,67 @@ import star_icon from './star_icon.png'
 import support_img from './support_img.png'
 import menu_icon from './menu_icon.png'
 import about_img from './about_img.png'
-import contact_img from './contact_img.png'
+import contact_img from './contact_img.jpg'
 import razorpay_logo from './razorpay_logo.png'
 import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
+import artisan1 from './artisan1.jpg'
+import artisan2 from './artisan2.jpeg'
+import artisan3 from './artisan3.jpg'
+import artisan4 from './artisan4.png'
+import artisan5 from './artisan5.png'
+import artisan6 from './artisan6.jpg'
+import artisan7 from './artisan7.jpg'
+import artisan8 from './artisan8.jpg'
+import artisan9 from './artisan9.jpeg'
+import artisan10 from './artisan10.jpg'
+import artisan11 from './artisan11.jpg'
+import artisan12 from './artisan12.jpg'
+import artisan13 from './artisan13.jpg'
+import artisan14 from './artisan14.jpg'
+import artisan15 from './artisan15.jpg'
+import artisan16 from './artisan16.jpg'
+import artisan17 from './artisan17.jpeg'
+import artisan18 from './artisan18.jpeg'
+import artisan19 from './artisan19.jpeg'
+import artisan20 from './artisan20.jpeg'
+import artisan21 from './artisan21.png'
+import artisan22 from './artisan22.jpg'
+import artisan23 from './artisan23.jpeg'
+import artisan24 from './artisan24.jpeg'
+import artisan_working from './artisan_working.jpg'
+import user_icon from './user_icon.jpeg'
+import ceo_img from './ceo_img.jpg'
+import artisan_head_img from './artisan_head_img.jpg'
+import cpo_img from './cpo_img.jpg'
+import cto_img from './cto_img.png'
+import featured_artisan from './featured_artisan.jpg'
+import artisan_local from './artisan_local.webp'
+import eco_impact from './eco_impact.webp'
+import bamboo_workshop from './bamboo_workshop.png'
+import block_print_workshop from './block_print_workshop.webp'
+import weaving_workshop from './weaving_workshop.jpeg'
+import pottery_workshop from './pottery_workshop.jpg'
+import workshop_hero from './workshop_hero.webp'
+import user1 from './user1.webp'
+import user2 from './user2.webp'
+
+import shawlImage from './shawlImage.webp';
+import teaSetImage from './teaSetImage.jpeg';
+import elephantImage from './elephantImage.webp';
+import sareeImage from './sareeImage.jpg';
+import thaliImage from './thaliImage.jpg';
+
+
+
+
 
 export const assets = {
     logo,
-    hero_img,
+    hero_img,bamboo_workshop,weaving_workshop,block_print_workshop,pottery_workshop,workshop_hero,shawlImage,teaSetImage,elephantImage,sareeImage,thaliImage,
+    hero_img1,
+    hero_img2,
+    hero_img3,
     cart_icon,
     dropdown_icon,
     exchange_icon,
@@ -92,129 +147,155 @@ export const assets = {
     contact_img,
     razorpay_logo,
     stripe_logo,
-    cross_icon
+    cross_icon,
+    artisan1, artisan2, artisan3, artisan4, artisan5,
+  artisan6, artisan7, artisan8, artisan9, artisan10,
+  artisan11, artisan12, artisan13, artisan14, artisan15,
+  artisan16, artisan17, artisan18, artisan19, artisan20,
+  artisan21,artisan22,artisan23,artisan24,
+  ceo_img,artisan_head_img,cpo_img,cto_img,user_icon,hero_login,artisan_working,featured_artisan,artisan_local,eco_impact,user1,user2
 }
 
 export const products = [
     {
         _id: "aaaaa",
-        name: "Women Round Neck Cotton Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 100,
+        name: "Terracotta Pottery",
+        description: "Believed to be one of the oldest of crafts, pottery has always been in vogue. Over the years, owing to popular demand, the art has expanded to include new designs under its umbrella. The clay is moulded into different shapes and sizes to make coffee mugs, wall panels, vases, animal motifs and statues of mythological figures.",
+        price: 10,
         image: [p_img1],
-        category: "Women",
-        subCategory: "Topwear",
-        sizes: ["S", "M", "L"],
+        category: "Pottery",
+        subCategory: "Terracotta",
+        sizes: ["5L", "7L", "8L"],
         date: 1716634345448,
-        bestseller: true
+        bestseller: true,
+        region: "South",
+        culture: "Kannadiga"
     },
     {
         _id: "aaaab",
-        name: "Men Round Neck Pure Cotton T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        name: "Banjara Handicrafts",
+        description: "The semi-nomadic tribes of Banjara are regarded as the patrons of this craft. The women make vivid patch work quilts abound in geometric patterns. About three to six layers of reused fabric are held together by running stitches. Silver, brass, gold, ivory, animal bone, mirrors and even plastic are transformed as embellishments on these garments. They are mainly found in the districts of Bellary, Bijapur, Raichur, Gulbarga and Belgaum.",
         price: 200,
-        image: [p_img2_1,p_img2_2,p_img2_3,p_img2_4],
-        category: "Men",
-        subCategory: "Topwear",
-        sizes: ["M", "L", "XL"],
+        image: [p_img2],
+        category: "Handmade Clothing",
+        subCategory: "Handwoven",
+        sizes: ["15L", "20L", "30L"],
         date: 1716621345448,
-        bestseller: true
+        bestseller: true,
+        region: "South",
+        culture: "Kannadiga"
     },
     {
         _id: "aaaac",
-        name: "Girls Round Neck Cotton Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        name: "Kinhal Wood Carving",
+        description: "Kinhal wood carving is the lacquerware woodcraft that takes its name from a small town in Koppal district. The craft was highly patronized by the Vijayanagara kings. Using a paste of tamarind seeds and pebbles to stick carved parts of wood, the Chitragars or artists create exquisite figurines and idols. A mixture of pebble powder and liquid gum is then used to sculpt ornaments and jewellery on these figures. The breathtaking designs of the Kinhal art can be easily differentiated from other forms of art by its vibrant colours and intricate designs. Kinhal toys have been given the Geographical Indication (GI) tag by the World Trade Organisation.",
         price: 220,
         image: [p_img3],
-        category: "Kids",
-        subCategory: "Topwear",
-        sizes: ["S", "L", "XL"],
+        category: "Home Decor",
+        subCategory: "Handwoven",
+        sizes: ["2.7 inch", "3 inch", "4 inch"],
         date: 1716234545448,
-        bestseller: true
+        bestseller: true,
+        region: "South",
+        culture: "Kannadiga"
     },
     {
         _id: "aaaad",
-        name: "Men Round Neck Pure Cotton T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        name: "Channapatna Lacquerware",
+        description: "The toys, which are lightweight yet tough, were originally made exclusively from ivory wood and coated with lacquer made from vegetable dyes. Traditionally, the colours used are a mix of vegetable dyes and food-grade pigments. The natural dyes include turmeric for yellow, indigo powder for blue, vermillion or kumkum powder for orange and red, and katha (acacia tree extract) for brown. The colours used for these toys specially for infants/ children are non-toxic and thus safe. For the 2015 Republic Day parade, the Karnataka tableau featured Channapatna handicrafts and won the third prize.",
         price: 110,
         image: [p_img4],
         category: "Men",
         subCategory: "Topwear",
         sizes: ["S", "M", "XXL"],
         date: 1716621345448,
-        bestseller: true
+        bestseller: true,
+        region: "South",
+        culture: "Kannadiga"
     },
     {
         _id: "aaaae",
-        name: "Women Round Neck Cotton Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        name: "Gokak Toys",
+        description: "In Gokak, local artisans create bright and colorful wooden toys mainly in the form of fruits, vegetables, animals and birds. This craft is believed to be at least 200 years old. Here, the toys are made using a specialised soft variety of wood, usually hariwala, polki, and hale wood.",
         price: 130,
         image: [p_img5],
-        category: "Women",
-        subCategory: "Topwear",
-        sizes: ["M", "L", "XL"],
+        category: "Home Decor",
+        subCategory: "Woodwork",
+        sizes: ["2.7 inch", "3 inch", "4 inch"],
         date: 1716622345448,
-        bestseller: true
+        bestseller: true,
+        region: "South",
+        culture: "Kannadiga"
     },
     {
         _id: "aaaaf",
-        name: "Girls Round Neck Cotton Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        name: "Rosewood Carving",
+        description: "The ancient craft of rosewood carving is known for its elaborate rosewood inlay work. The art has been practiced in Mysore for centuries and is said to have enjoyed the patronage of the Mysore Maharajas. Artisans meticulously even out the wood and prepare it for etching the designs. The heavy timber that rosewood is, it's used extensively in furniture, cabinetry and architectural woodwork as well.",
         price: 140,
         image: [p_img6],
-        category: "Kids",
-        subCategory: "Topwear",
-        sizes: ["S", "L", "XL"],
+        category: "Home Decor",
+        subCategory: "Woodwork",
+        sizes: ["2.7 inch", "3 inch", "4 inch"],
         date: 1716623423448,
-        bestseller: true
+        bestseller: true,
+        region: "South",
+        culture: "Kannadiga"
     },
     {
         _id: "aaaag",
-        name: "Men Tapered Fit Flat-Front Trousers",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        name: "The Dual Tone Devi danglers",
+        description: "A pair of dual tone ( silver and golden) german silver Devi durga face earrings. They are Stud danglers. A must have for the coming festive season.",
         price: 190,
         image: [p_img7],
-        category: "Men",
-        subCategory: "Bottomwear",
+        category: "Jewelry",
+        subCategory: "Metalwork",
         sizes: ["S", "L", "XL"],
         date: 1716621542448,
-        bestseller: false
+        bestseller: false,
+        region: "East",
+        culture: "Bengali"
     },
     {
         _id: "aaaah",
-        name: "Men Round Neck Pure Cotton T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        name: "Earrings Design 3(Combo)",
+        description: "Fabric earrings offer a lightweight, eco-friendly, and stylish accessory for any occasion. Crafted from vibrant fabrics, these unique earrings add a touch of color and charm to your look while supporting sustainable fashion. Perfect for casual or festive wear!",
         price: 140,
         image: [p_img8],
-        category: "Men",
-        subCategory: "Topwear",
-        sizes: ["S", "M", "L", "XL"],
+        category: "Jewelry",
+        subCategory: "Leather Craft",
+        sizes: ["Pack of 1", "Pack of 2", "Pack of 3"],
         date: 1716622345448,
-        bestseller: false
+        bestseller: false,
+        region: "West",
+        culture: "Gujarati"
     },
     {
         _id: "aaaai",
-        name: "Girls Round Neck Cotton Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        name: "Woven Zephyr",
+        description: "Eazy Breezy White Dress Made From Organic Cotton And Marble Dyed In Indigo.",
         price: 100,
         image: [p_img9],
-        category: "Kids",
-        subCategory: "Topwear",
+        category: "Handmade Clothing",
+        subCategory: "Embroidery",
         sizes: ["M", "L", "XL"],
         date: 1716621235448,
-        bestseller: false
+        bestseller: false,
+        region: "North",
+        culture: "Punjabi"
     },
     {
         _id: "aaaaj",
-        name: "Men Tapered Fit Flat-Front Trousers",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        name: "Men handwoven shirt",
+        description: "Long Sleeve 100 % handspun and handwoven stylish and comfortable shirt made in Villages.",
         price: 110,
         image: [p_img10],
-        category: "Men",
-        subCategory: "Bottomwear",
+        category: "Handmade Clothing",
+        subCategory: "Handwoven",
         sizes: ["S", "L", "XL"],
         date: 1716622235448,
-        bestseller: false
+        bestseller: false,
+        region: "South",
+        culture: "Tamil"
     },
     {
         _id: "aaaak",
@@ -226,7 +307,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L"],
         date: 1716623345448,
-        bestseller: false
+        bestseller: false,
+        region: "West",
+        culture: "Marathi"
     },
     {
         _id: "aaaal",
@@ -238,7 +321,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716624445448,
-        bestseller: false
+        bestseller: false,
+        region: "North",
+        culture: "Punjabi"
     },
     {
         _id: "aaaam",
@@ -250,7 +335,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716625545448,
-        bestseller: false
+        bestseller: false,
+        region: "East",
+        culture: "Bengali"
     },
     {
         _id: "aaaan",
@@ -262,7 +349,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716626645448,
-        bestseller: false
+        bestseller: false,
+        region: "South",
+        culture: "Telugu"
     },
     {
         _id: "aaaao",
@@ -274,7 +363,9 @@ export const products = [
         subCategory: "Bottomwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716627745448,
-        bestseller: false
+        bestseller: false,
+        region: "West",
+        culture: "Gujarati"
     },
     {
         _id: "aaaap",
@@ -286,7 +377,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716628845448,
-        bestseller: false
+        bestseller: false,
+        region: "Northeast",
+        culture: "Assamese"
     },
     {
         _id: "aaaaq",
@@ -298,7 +391,9 @@ export const products = [
         subCategory: "Bottomwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716629945448,
-        bestseller: false
+        bestseller: false,
+        region: "North",
+        culture: "Kashmiri"
     },
     {
         _id: "aaaar",
@@ -310,7 +405,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716631045448,
-        bestseller: false
+        bestseller: false,
+        region: "South",
+        culture: "Malayali"
     },
     {
         _id: "aaaas",
@@ -322,7 +419,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716632145448,
-        bestseller: false
+        bestseller: false,
+        region: "East",
+        culture: "Odia"
     },
     {
         _id: "aaaat",
@@ -334,7 +433,9 @@ export const products = [
         subCategory: "Bottomwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716633245448,
-        bestseller: false
+        bestseller: false,
+        region: "West",
+        culture: "Rajasthani"
     },
     {
         _id: "aaaau",
@@ -346,7 +447,9 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716634345448,
-        bestseller: false
+        bestseller: false,
+        region: "North",
+        culture: "Himachali"
     },
     {
         _id: "aaaav",
@@ -358,7 +461,9 @@ export const products = [
         subCategory: "Bottomwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716635445448,
-        bestseller: false
+        bestseller: false,
+        region: "South",
+        culture: "Telugu"
     },
     {
         _id: "aaaaw",
@@ -370,7 +475,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716636545448,
-        bestseller: false
+        bestseller: false,
+        region: "East",
+        culture: "Bihari"
     },
     {
         _id: "aaaax",
@@ -382,7 +489,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716637645448,
-        bestseller: false
+        bestseller: false,
+        region: "West",
+        culture: "Goan"
     },
     {
         _id: "aaaay",
@@ -394,7 +503,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716638745448,
-        bestseller: false
+        bestseller: false,
+        region: "South",
+        culture: "Tamil"
     },
     {
         _id: "aaaaz",
@@ -406,7 +517,9 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716639845448,
-        bestseller: false
+        bestseller: false,
+        region: "North",
+        culture: "Punjabi"
     },
     {
         _id: "aaaba",
@@ -418,7 +531,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716640945448,
-        bestseller: false
+        bestseller: false,
+        region: "Northeast",
+        culture: "Assamese"
     },
     {
         _id: "aaabb",
@@ -430,7 +545,9 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716642045448,
-        bestseller: false
+        bestseller: false,
+        region: "West",
+        culture: "Marathi"
     },
     {
         _id: "aaabc",
@@ -442,7 +559,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716643145448,
-        bestseller: false
+        bestseller: false,
+        region: "East",
+        culture: "Bengali"
     },
     {
         _id: "aaabd",
@@ -454,7 +573,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716644245448,
-        bestseller: false
+        bestseller: false,
+        region: "South",
+        culture: "Kannadiga"
     },
     {
         _id: "aaabe",
@@ -466,7 +587,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716645345448,
-        bestseller: false
+        bestseller: false,
+        region: "North",
+        culture: "Kashmiri"
     },
     {
         _id: "aaabf",
@@ -478,7 +601,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716646445448,
-        bestseller: false
+        bestseller: false,
+        region: "West",
+        culture: "Rajasthani"
     },
     {
         _id: "aaabg",
@@ -490,7 +615,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716647545448,
-        bestseller: false
+        bestseller: false,
+        region: "South",
+        culture: "Malayali"
     },
     {
         _id: "aaabh",
@@ -502,7 +629,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716648645448,
-        bestseller: false
+        bestseller: false,
+        region: "East",
+        culture: "Odia"
     },
     {
         _id: "aaabi",
@@ -514,7 +643,9 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716649745448,
-        bestseller: false
+        bestseller: false,
+        region: "North",
+        culture: "Himachali"
     },
     {
         _id: "aaabj",
@@ -526,7 +657,9 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716650845448,
-        bestseller: false
+        bestseller: false,
+        region: "West",
+        culture: "Gujarati"
     },
     {
         _id: "aaabk",
@@ -538,7 +671,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716651945448,
-        bestseller: false
+        bestseller: false,
+        region: "South",
+        culture: "Telugu"
     },
     {
         _id: "aaabl",
@@ -550,7 +685,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716653045448,
-        bestseller: false
+        bestseller: false,
+        region: "East",
+        culture: "Bihari"
     },
     {
         _id: "aaabm",
@@ -562,7 +699,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716654145448,
-        bestseller: false
+        bestseller: false,
+        region: "West",
+        culture: "Goan"
     },
     {
         _id: "aaabn",
@@ -574,7 +713,9 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716655245448,
-        bestseller: false
+        bestseller: false,
+        region: "South",
+        culture: "Tamil"
     },
     {
         _id: "aaabo",
@@ -586,7 +727,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716656345448,
-        bestseller: false
+        bestseller: false,
+        region: "North",
+        culture: "Punjabi"
     },
     {
         _id: "aaabp",
@@ -598,7 +741,9 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716657445448,
-        bestseller: false
+        bestseller: false,
+        region: "Northeast",
+        culture: "Assamese"
     },
     {
         _id: "aaabq",
@@ -610,7 +755,9 @@ export const products = [
         subCategory: "Bottomwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716658545448,
-        bestseller: false
+        bestseller: false,
+        region: "West",
+        culture: "Marathi"
     },
     {
         _id: "aaabr",
@@ -622,7 +769,9 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716659645448,
-        bestseller: false
+        bestseller: false,
+        region: "East",
+        culture: "Bengali"
     },
     {
         _id: "aaabs",
@@ -634,7 +783,9 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716660745448,
-        bestseller: false
+        bestseller: false,
+        region: "South",
+        culture: "Kannadiga"
     },
     {
         _id: "aaabt",
@@ -646,7 +797,9 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716661845448,
-        bestseller: false
+        bestseller: false,
+        region: "North",
+        culture: "Kashmiri"
     },
     {
         _id: "aaabu",
@@ -658,7 +811,9 @@ export const products = [
         subCategory: "Bottomwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716662945448,
-        bestseller: false
+        bestseller: false,
+        region: "West",
+        culture: "Rajasthani"
     },
     {
         _id: "aaabv",
@@ -670,7 +825,9 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716664045448,
-        bestseller: false
+        bestseller: false,
+        region: "South",
+        culture: "Malayali"
     },
     {
         _id: "aaabw",
@@ -682,7 +839,9 @@ export const products = [
         subCategory: "Bottomwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716665145448,
-        bestseller: false
+        bestseller: false,
+        region: "East",
+        culture: "Odia"
     },
     {
         _id: "aaabx",
@@ -693,7 +852,10 @@ export const products = [
         category: "Kids",
         subCategory: "Bottomwear",
         sizes: ["S", "M", "L", "XL"],
-        date: 1716666245448, bestseller: false
+        date: 1716666245448,
+        bestseller: false,
+        region: "North",
+        culture: "Himachali"
     },
     {
         _id: "aaaby",
@@ -705,7 +867,9 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716667345448,
-        bestseller: false
+        bestseller: false,
+        region: "West",
+        culture: "Gujarati"
     },
     {
         _id: "aaabz",
@@ -717,7 +881,8 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
-        bestseller: false
+        bestseller: false,
+        region: "South",
+        culture: "Telugu"
     }
-
 ]

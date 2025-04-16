@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Product Dashboard</title>
+    <style>
+        :root {
+            --primary-color: #6b4e3b;
+            --secondary-color: #d4a76a;
+            --light-color: #f8f1e5;
+            --dark-color: #3a2c20;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .welcome-message {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+        }
+        
+        .sidebar {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 15px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            color: var(--dark-color);
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .sidebar-menu i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .main-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-card h3 {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+        
+        .stat-card.sold {
+            border-top: 4px solid var(--success-color);
+        }
+        
+        .stat-card.unsold {
+            border-top: 4px solid var(--warning-color);
+        }
+        
+        .stat-card.revenue {
+            border-top: 4px solid var(--secondary-color);
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab:hover {
+            background-color: rgba(107, 78, 59, 0.1);
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--primary-color);
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background-color: rgba(212, 167, 106, 0.1);
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status.sold {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: var(--success-color);
+        }
+        
+        .status.unsold {
+            background-color: rgba(255, 152, 0, 0.2);
+            color: var(--warning-color);
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .product-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Artisan Dashboard</h1>
+            <p class="welcome-message">Welcome back! Manage your products and sales</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="dashboard">
+            <aside class="sidebar">
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-box-open"></i> Products</a></li>
+                    <li><a href="#"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                    <li><a href="#"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </aside>
+            
+            <main class="main-content">
+                <div class="stats-cards">
+                    <div class="stat-card sold">
+                        <h3>Sold Products</h3>
+                        <div class="value" id="sold-count">0</div>
+                    </div>
+                    <div class="stat-card unsold">
+                        <h3>Unsold Products</h3>
+                        <div class="value" id="unsold-count">0</div>
+                    </div>
+                    <div class="stat-card revenue">
+                        <h3>Total Revenue</h3>
+                        <div class="value" id="total-revenue">$0</div>
+                    </div>
+                </div>
+                
+                <div class="tabs">
+                    <div class="tab active" data-tab="sold">Sold Products</div>
+                    <div class="tab" data-tab="unsold">Unsold Products</div>
+                </div>
+                
+                <div class="tab-content active" id="sold-tab">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Sold Date</th>
+                                <th>Customer</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sold-products-table">
+                            <!-- Sold products will be inserted here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="tab-content" id="unsold-tab">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Listed Date</th>
+                                <th>Views</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="unsold-products-table">
+                            <!-- Unsold products will be inserted here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Sample data - in a real app, this would come from an API
+        const products = [
+            {
+                id: 1,
+                name: "Handcrafted Wooden Bowl",
+                image: "https://images.unsplash.com/photo-1605540436563-5bca919ae766?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                price: 45.99,
+                status: "sold",
+                soldDate: "2023-05-15",
+                customer: "Sarah Johnson",
+                listedDate: "2023-04-20",
+                views: 24
+            },
+            {
+                id: 2,
+                name: "Ceramic Vase",
+                image: "https://images.unsplash.com/photo-1589984662646-e7b2e4962f18?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                price: 32.50,
+                status: "unsold",
+                listedDate: "2023-05-01",
+                views: 18
+            },
+            {
+                id: 3,
+                name: "Woven Cotton Rug",
+                image: "https://images.unsplash.com/photo-1592078615290-033ee584e267?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                price: 89.99,
+                status: "sold",
+                soldDate: "2023-05-10",
+                customer: "Michael Brown",
+                listedDate: "2023-03-15",
+                views: 42
+            },
+            {
+                id: 4,
+                name: "Hand-blown Glass Ornament",
+                image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                price: 22.00,
+                status: "unsold",
+                listedDate: "2023-05-05",
+                views: 15
+            },
+            {
+                id: 5,
+                name: "Leather Wallet",
+                image: "https://images.unsplash.com/photo-1549318919-5f3c3d2cac76?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                price: 38.75,
+                status: "sold",
+                soldDate: "2023-05-18",
+                customer: "Emily Davis",
+                listedDate: "2023-04-10",
+                views: 31
+            },
+            {
+                id: 6,
+                name: "Handmade Pottery Mug",
+                image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                price: 28.00,
+                status: "unsold",
+                listedDate: "2023-05-12",
+                views: 9
+            }
+        ];
+
+        // DOM elements
+        const soldCountEl = document.getElementById('sold-count');
+        const unsoldCountEl = document.getElementById('unsold-count');
+        const totalRevenueEl = document.getElementById('total-revenue');
+        const soldProductsTable = document.getElementById('sold-products-table');
+        const unsoldProductsTable = document.getElementById('unsold-products-table');
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Calculate stats
+        function calculateStats() {
+            const soldProducts = products.filter(product => product.status === 'sold');
+            const unsoldProducts = products.filter(product => product.status === 'unsold');
+            const totalRevenue = soldProducts.reduce((sum, product) => sum + product.price, 0);
+            
+            soldCountEl.textContent = soldProducts.length;
+            unsoldCountEl.textContent = unsoldProducts.length;
+            totalRevenueEl.textContent = `$${totalRevenue.toFixed(2)}`;
+        }
+
+        // Render sold products table
+        function renderSoldProducts() {
+            const soldProducts = products.filter(product => product.status === 'sold');
+            
+            soldProductsTable.innerHTML = soldProducts.map(product => `
+                <tr>
+                    <td>
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                        ${product.name}
+                    </td>
+                    <td class="price">$${product.price.toFixed(2)}</td>
+                    <td>${product.soldDate}</td>
+                    <td>${product.customer}</td>
+                    <td><span class="status sold">Sold</span></td>
+                </tr>
+            `).join('');
+        }
+
+        // Render unsold products table
+        function renderUnsoldProducts() {
+            const unsoldProducts = products.filter(product => product.status === 'unsold');
+            
+            unsoldProductsTable.innerHTML = unsoldProducts.map(product => `
+                <tr>
+                    <td>
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                        ${product.name}
+                    </td>
+                    <td class="price">$${product.price.toFixed(2)}</td>
+                    <td>${product.listedDate}</td>
+                    <td>${product.views}</td>
+                    <td><span class="status unsold">Unsold</span></td>
+                </tr>
+            `).join('');
+        }
+
+        // Tab switching functionality
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        // Initialize the dashboard
+        function initDashboard() {
+            calculateStats();
+            renderSoldProducts();
+            renderUnsoldProducts();
+        }
+
+        // Run when page loads
+        document.addEventListener('DOMContentLoaded', initDashboard);
+    </script>
+</body>
+</html>
