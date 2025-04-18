@@ -27,6 +27,7 @@ import ArtisanDashboard from "./components/ArtisanDashboard";
 import PricingDetails from "./pages/PricingDetails";
 import VolunteerDashboard from "./pages/VolunteerDashboard";
 import ArtisanProfile from "./pages/ArtisanProfile";
+import AiTutor from "./pages/AiTutor";
 function App() {
   const location = useLocation();
 
@@ -35,6 +36,7 @@ function App() {
     "/volunteer-dashboard",
     "/pricingDetails",
     "/artisan",
+    "/aitutor",
   ];
   const shouldHideLayout = hideLayoutRoutes.some((route) =>
     location.pathname.startsWith(route)
@@ -73,6 +75,7 @@ function App() {
         <Route path="/pricingDetails/:id" element={<PricingDetails />} />
 
         <Route path="/artisanpricing/:artisanId" element={<ArtisanPricing />} />
+        <Route path="/aitutor" element={<AiTutor />} />
 
         <Route path="/artisan-dashboard" element={<ArtisanDashboard />} />
         <Route path="/volunteer-dashboard" element={<VolunteerDashboard />} />

@@ -130,12 +130,20 @@ const ArtisanDashboard = () => {
           <h1 className="text-2xl font-bold text-gray-900">
             Artisan Dashboard
           </h1>
-          <button
-            onClick={handleLogout}
-            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-          >
-            Logout
-          </button>
+          <div className="gap-4 flex items-center">
+            <button
+              onClick={() => navigate("/aitutor")}
+              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            >
+              Ai Tutor
+            </button>
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </header>
 
