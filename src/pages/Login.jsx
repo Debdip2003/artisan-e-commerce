@@ -1,23 +1,116 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { assets } from "../assets/frontend_assets/assets";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   const [currentState, setCurrentState] = useState("Sign Up");
+  const [aadhaarFront, setAadhaarFront] = useState(null);
+  const [aadhaarBack, setAadhaarBack] = useState(null);
+  const [formData, setFormData] = useState({
+    id: "",
+    password: "",
+    fullName: "",
+    gender: "",
+    dob: "",
+    address: "",
+    phoneNumber: "",
+    retypePassword: "",
+  });
   const [activeTab, setActiveTab] = useState("User");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-  const onSubmitHandler = async (event) => {
-    event.preventDefault();
-    if (activeTab === "Artisan") {
-      navigate("/artisan-dashboard");
-    } else if (activeTab === "Volunteer") {
-      navigate("/volunteer-dashboard");
+  // Handle file uploads for Aadhaar images
+  const handleFrontUpload = (e) => {
+    setAadhaarFront(e.target.files[0]);
+  };
+
+  // Handle file uploads for Aadhaar images
+  const handleBackUpload = (e) => {
+    setAadhaarBack(e.target.files[0]);
+  };
+
+  // Function to extract data from Aadhaar images
+  const handleExtractData = async () => {
+    if (loading) return;
+    setLoading(true);
+    if (!aadhaarFront || !aadhaarBack) {
+      toast.error("Please upload both front and back Aadhaar images.");
+      return;
+    }
+
+    const formDataToSend = new FormData();
+    formDataToSend.append("front", aadhaarFront);
+    formDataToSend.append("back", aadhaarBack);
+
+    try {
+      const res = await fetch("http://localhost:5000/extract-aadhaar", {
+        method: "POST",
+        body: formDataToSend,
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.error || "Failed to extract Aadhaar details");
+        return;
+      }
+
+      setFormData((prev) => ({
+        ...prev,
+        fullName: data["Name"] || "",
+        gender: data["Gender"] || "",
+        dob: data["DOB/YOB"] || "",
+        address: data["Address"] || "",
+        phoneNumber: data["Aadhar Number"] || "",
+      }));
+
+      toast.success("Aadhaar data extracted successfully");
+      setLoading(false);
+    } catch (err) {
+      toast.error("Server error while extracting data");
     }
   };
 
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+
+    if (currentState === "Login") {
+      if (activeTab === "Artisan") {
+        if (
+          formData.id === "artisan123" &&
+          formData.password === "artisanpass"
+        ) {
+          navigate("/artisan-dashboard");
+        } else {
+          toast.error("Invalid Artisan credentials");
+        }
+      } else if (activeTab === "Volunteer") {
+        if (
+          formData.id === "volunteer123" &&
+          formData.password === "volunteerpass"
+        ) {
+          navigate("/volunteer-dashboard");
+        } else {
+          toast.error("Invalid Volunteer credentials");
+        }
+      }
+    } else {
+      // Sign Up logic or form data submission
+    }
+  };
   return (
     <div className="min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+      />
       <div className="w-full max-w-5xl bg-white shadow-2xl rounded-3xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
         {/* Image Section */}
         <div className="hidden md:block bg-gray-100">
@@ -142,12 +235,26 @@ const Login = () => {
                     <input
                       type="text"
                       placeholder="Full Name"
+                      value={formData.fullName}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          fullName: e.target.value,
+                        }))
+                      }
                       required
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                     <input
                       type="text"
                       placeholder="Gender"
+                      value={formData.gender}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          gender: e.target.value,
+                        }))
+                      }
                       required
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
@@ -166,12 +273,26 @@ const Login = () => {
                     <input
                       type="text"
                       placeholder="Address"
+                      value={formData.address}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          address: e.target.value,
+                        }))
+                      }
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
 
                     <input
                       type="text"
                       placeholder="Date of Birth (DD-MM-YYYY)"
+                      value={formData.dob}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          dob: e.target.value,
+                        }))
+                      }
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                     <input
@@ -182,24 +303,42 @@ const Login = () => {
                     />
                     <input
                       type="file"
+                      accept="image/*"
+                      onChange={handleFrontUpload}
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                     <input
                       type="file"
+                      accept="image/*"
+                      onChange={handleBackUpload}
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
+                    <button
+                      type="button"
+                      onClick={handleExtractData}
+                      disabled={loading}
+                      className="w-full mt-2 bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-200 disabled:opacity-50"
+                    >
+                      {loading ? "Extracting..." : "Extract Aadhaar"}
+                    </button>
                   </>
                 ) : (
                   <>
                     <input
                       type="text"
                       placeholder="Artisan ID"
+                      onChange={(e) =>
+                        setFormData({ ...formData, id: e.target.value })
+                      }
                       required
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                     <input
                       type="password"
                       placeholder="Password"
+                      onChange={(e) =>
+                        setFormData({ ...formData, password: e.target.value })
+                      }
                       required
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
@@ -216,6 +355,26 @@ const Login = () => {
                     <input
                       type="text"
                       placeholder="Full Name"
+                      value={formData.fullName}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          fullName: e.target.value,
+                        }))
+                      }
+                      required
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Gender"
+                      value={formData.gender}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          gender: e.target.value,
+                        }))
+                      }
                       required
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
@@ -231,44 +390,75 @@ const Login = () => {
                       required
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
-
                     <input
                       type="text"
                       placeholder="Address"
+                      value={formData.address}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          address: e.target.value,
+                        }))
+                      }
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
 
                     <input
                       type="text"
                       placeholder="Date of Birth (DD-MM-YYYY)"
+                      value={formData.dob}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          dob: e.target.value,
+                        }))
+                      }
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                     <input
-                      type="tel"
-                      placeholder="Phone Number"
-                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
-                    />
-                    <input
-                      type="email"
-                      placeholder="Email (optional)"
+                      type="number"
+                      placeholder="Phone Number "
+                      required
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                     <input
                       type="file"
+                      accept="image/*"
+                      onChange={handleFrontUpload}
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleBackUpload}
+                      className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleExtractData}
+                      disabled={loading}
+                      className="w-full mt-2 bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-200 disabled:opacity-50"
+                    >
+                      {loading ? "Extracting..." : "Extract Aadhaar"}
+                    </button>
                   </>
                 ) : (
                   <>
                     <input
                       type="text"
-                      placeholder="Volunteer ID"
+                      placeholder="Artisan ID"
+                      onChange={(e) =>
+                        setFormData({ ...formData, id: e.target.value })
+                      }
                       required
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
                     <input
                       type="password"
                       placeholder="Password"
+                      onChange={(e) =>
+                        setFormData({ ...formData, password: e.target.value })
+                      }
                       required
                       className="w-full px-5 py-3 text-base border border-gray-400 rounded-lg bg-white shadow-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 ease-in-out"
                     />
@@ -312,7 +502,6 @@ const Login = () => {
           </form>
         </div>
       </div>
-
       {/* Tailwind Utility Classes as Custom Component Styles */}
       <style jsx>{`
         .w-full

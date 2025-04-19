@@ -233,7 +233,7 @@ const ArtisanDashboard = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     Description{" "}
                     <span className="hover:cursor-pointer">
-                      (Generate Caption)
+                      (Generate Caption using voice command)
                     </span>
                   </label>
                   <textarea

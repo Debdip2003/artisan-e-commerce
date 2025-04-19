@@ -20,16 +20,16 @@ const values = [
 
 const leaders = [
   {
-    name: "Soumalya Baksi",
-    role: "Leader & Co-Founder",
-    image: assets.ceo_img,
-    desc: "Soumalya leads Sahaj with a vision to merge tradition and technology. His leadership drives innovation while staying rooted in empathy and sustainability.",
-  },
-  {
     name: "Ayush Saha Roy",
-    role: "Member & Co-Founder",
+    role: "Leader & Co-Founder",
     image: assets.cto_img,
     desc: "Ayush architects Sahaj's AI-driven backbone. His expertise ensures our tools are not only intelligent but also accessible to every artisan.",
+  },
+  {
+    name: "Soumalya Baksi",
+    role: "Member & Co-Founder",
+    image: assets.ceo_img,
+    desc: "Soumalya leads Sahaj with a vision to merge tradition and technology. His leadership drives innovation while staying rooted in empathy and sustainability.",
   },
   {
     name: "Sulagna Dutta",
@@ -59,19 +59,30 @@ const About = () => {
           />
           <div className="text-left space-y-6 max-w-xl">
             <p className="text-lg">
-              <strong className="text-2xl text-orange-500">Sahaj – AI for Artisans</strong> is an innovative initiative aimed at
-              uplifting local artisans by blending traditional craftsmanship with modern technology. We bridge the gap between
-              rural creativity and urban demand through AI-powered tools and insights.
+              <strong className="text-2xl text-orange-500">
+                Sahaj – AI for Artisans
+              </strong>{" "}
+              is an innovative initiative aimed at uplifting local artisans by
+              blending traditional craftsmanship with modern technology. We
+              bridge the gap between rural creativity and urban demand through
+              AI-powered tools and insights.
             </p>
             <p>
-              Our platform empowers artisans to showcase their work to a broader audience, increase their income,
-              and preserve cultural heritage—all while enhancing product quality and customer satisfaction.
+              Our platform empowers artisans to showcase their work to a broader
+              audience, increase their income, and preserve cultural
+              heritage—all while enhancing product quality and customer
+              satisfaction.
             </p>
             <div>
-              <h3 className="text-xl font-semibold text-indigo-700">Our Mission</h3>
+              <h3 className="text-xl font-semibold text-indigo-700">
+                Our Mission
+              </h3>
               <p>
-                To support and scale India’s rich artisan ecosystem by leveraging the power of Artificial Intelligence. We aim to promote
-                sustainable, inclusive growth by digitally enabling small artisans and making handmade excellence accessible to everyone.
+                To support and scale India’s rich artisan ecosystem by
+                leveraging the power of Artificial Intelligence. We aim to
+                promote sustainable, inclusive growth by digitally enabling
+                small artisans and making handmade excellence accessible to
+                everyone.
               </p>
             </div>
           </div>
@@ -88,8 +99,12 @@ const About = () => {
                 key={idx}
                 className="bg-white p-8 rounded-2xl shadow-md border-t-4 border-orange-300 hover:shadow-lg transition duration-300"
               >
-                <h4 className="text-xl font-bold mb-4 text-indigo-700">{item.title}</h4>
-                <p className="text-gray-700 text-sm leading-relaxed">{item.desc}</p>
+                <h4 className="text-xl font-bold mb-4 text-indigo-700">
+                  {item.title}
+                </h4>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -111,8 +126,12 @@ const About = () => {
                   alt={leader.name}
                   className="w-32 h-32 mx-auto rounded-full object-cover border-4 border-indigo-300 mb-4"
                 />
-                <h4 className="text-lg font-bold text-gray-900">{leader.name}</h4>
-                <p className="text-sm text-orange-500 font-medium mb-2">{leader.role}</p>
+                <h4 className="text-lg font-bold text-gray-900">
+                  {leader.name}
+                </h4>
+                <p className="text-sm text-orange-500 font-medium mb-2">
+                  {leader.role}
+                </p>
                 <p className="text-gray-600 text-sm">{leader.desc}</p>
               </div>
             ))}
@@ -120,7 +139,6 @@ const About = () => {
         </div>
       </div>
 
-   
       <div className="mt-20 bg-gradient-to-r from-pink-100 via-yellow-100 to-orange-100 py-16">
         <NewsletterBox />
       </div>
