@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
-import Title from "./Title";
+// import Title from "./Title";
 import ProductItems from "./ProductItems";
 
 const LatestCollection = () => {
@@ -18,10 +18,10 @@ const LatestCollection = () => {
           Sahaj's Latest Collections
         </h2>
         <p className="mt-4 text-gray-700 max-w-2xl mx-auto text-sm sm:text-base">
-          Explore the newest creations from our artisan partners — a blend of tradition and technology, crafted with care and powered by Sahaj AI.
+          Explore the newest creations from our artisan partners — a blend of
+          tradition and technology, crafted with care and powered by Sahaj AI.
         </p>
 
-    
         <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {latestProducts.map((item, index) => (
             <div
@@ -32,10 +32,9 @@ const LatestCollection = () => {
                 id={item._id}
                 image={item.image}
                 name={item.name}
-                price={`₹${item.price.toLocaleString()}`}
+                price={`${item.price.toLocaleString()}`}
               />
 
-     
               <div className="mt-2 text-xs text-indigo-500 font-medium italic">
                 New Arrival
               </div>

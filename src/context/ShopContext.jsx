@@ -6,18 +6,18 @@ import { useNavigate } from "react-router-dom";
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
-  const currency = "$";
+  // const currency = "$";
   const delivery_fee = 10;
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState({});
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const addToCart = async (itemId, size) => {
     if (!size) {
       toast.error("Select Product Size");
       return;
-    }else{
+    } else {
       toast.success("Product is added to cart");
     }
 
@@ -50,9 +50,9 @@ const ShopContextProvider = (props) => {
     return totalCount;
   };
 
-  useEffect(()=>{
-  console.log(cartItems)
-  },[cartItems])
+  useEffect(() => {
+    console.log(cartItems);
+  }, [cartItems]);
 
   const updateQuantity = async (itemId, size, quantity) => {
     let cartData = structuredClone(cartItems);
@@ -77,7 +77,7 @@ const ShopContextProvider = (props) => {
 
   const value = {
     products,
-    currency,
+    // currency,
     delivery_fee,
     search,
     setSearch,

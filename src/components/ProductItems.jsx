@@ -17,10 +17,7 @@ const ProductItems = ({ id, image, name, price }) => {
         </div>
         <div className="mt-3 px-1">
           <h3 className="text-sm font-medium truncate">{name}</h3>
-          <p className="text-gray-600 text-sm font-semibold mt-1">
-            {currency}
-            {price}
-          </p>
+          <p className="text-gray-600 text-sm font-semibold mt-1">₹{price}</p>
         </div>
       </div>
     </Link>
