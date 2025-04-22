@@ -29,14 +29,12 @@ const categoryDetails = {
       {
         name: "Ritika K.",
         rating: 5,
-        comment:
-          "Feels like a royal touch to every outfit. Highly recommended!",
+        comment: "Feels like a royal touch to every outfit. Highly recommended!",
       },
       {
         name: "Ananya R.",
         rating: 4,
-        comment:
-          "Stunning designs, especially the earrings. Worth every penny.",
+        comment: "Stunning designs, especially the earrings. Worth every penny.",
       },
     ],
   },
@@ -291,6 +289,7 @@ const Product = () => {
   return (
     <div className="border-t-2 pt-10 px-4 sm:px-8">
       <div className="flex flex-col lg:flex-row gap-12">
+        {/* Product Image Section */}
         <div className="lg:w-1/2 flex flex-col md:flex-row gap-4">
           <div className="flex md:flex-col gap-3 overflow-x-auto md:overflow-y-auto max-h-80 pr-2">
             {productData.image.map((img, idx) => (
@@ -310,29 +309,22 @@ const Product = () => {
           />
         </div>
 
+        {/* Product Details Section */}
         <div className="lg:w-1/2 space-y-6">
-          <h1 className="text-3xl font-bold text-gray-800">
-            {productData.name}
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-800">{productData.name}</h1>
           <div className="flex items-center gap-1 text-yellow-500">
             {[...Array(4)].map((_, i) => (
-              <img
-                src={assets.star_icon}
-                alt="star"
-                key={i}
-                className="w-4 h-4"
-              />
+              <img src={assets.star_icon} alt="star" key={i} className="w-4 h-4" />
             ))}
             <img src={assets.star_dull_icon} alt="star" className="w-4 h-4" />
             <span className="text-sm text-gray-500 ml-2">(122 reviews)</span>
           </div>
           <h2 className="text-2xl font-semibold text-orange-600">
-            ₹{(productData.price * 83.5).toFixed(0)}
+            ₹{productData.price}
           </h2>
-          <p className="text-gray-600 leading-relaxed">
-            {categoryInfo.description}
-          </p>
+          <p className="text-gray-600 leading-relaxed">{categoryInfo.description}</p>
 
+          {/* Size Selection */}
           {Array.isArray(productData.sizes) && productData.sizes.length > 0 && (
             <div>
               <p className="font-medium mb-2">Select Size</p>
@@ -369,6 +361,7 @@ const Product = () => {
         </div>
       </div>
 
+      {/* Meet the Artisan Section */}
       <div className="mt-10">
         <h3 className="text-xl font-bold mb-4">Meet the Artisan</h3>
         <div className="flex items-center gap-6 bg-orange-50 p-4 rounded-lg border">
@@ -379,64 +372,44 @@ const Product = () => {
           />
           <div>
             <p className="font-semibold text-gray-800">{artisanInfo.name}</p>
-            <p className="text-sm text-gray-500 italic mb-1">
-              {artisanInfo.region}
-            </p>
-            <p className="text-sm text-gray-600">{artisanInfo.description}</p>
+            <p className="text-sm text-gray-500 italic mb-1">{artisanInfo.region}</p>
+            <p className="text-sm text-gray-700">{artisanInfo.description}</p>
           </div>
         </div>
       </div>
 
-      <div className="mt-20">
-        <h3 className="text-xl font-bold mb-6">Customer Reviews</h3>
-        <div className="grid gap-6 sm:grid-cols-2">
-          {categoryInfo.reviews.map((review, idx) => (
-            <div
-              key={idx}
-              className="p-6 rounded-lg border bg-white shadow-sm hover:shadow-lg transition duration-300"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <img
-                  src={assets.user_icon}
-                  alt="user"
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-                <div>
-                  <p className="font-semibold text-gray-800">{review.name}</p>
-                  <div className="flex gap-1 text-yellow-400">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <img
-                        key={i}
-                        src={assets.star_icon}
-                        alt="star"
-                        className="w-3.5"
-                      />
-                    ))}
-                    {[...Array(5 - review.rating)].map((_, i) => (
-                      <img
-                        key={i}
-                        src={assets.star_dull_icon}
-                        alt="star"
-                        className="w-3.5"
-                      />
-                    ))}
-                  </div>
+      {/* Customer Reviews Section */}
+      {categoryInfo.reviews.length > 0 && (
+        <div className="mt-10">
+          <h3 className="text-xl font-bold mb-4">Customer Reviews</h3>
+          <div className="space-y-4">
+            {categoryInfo.reviews.map((review, i) => (
+              <div key={i} className="border p-4 rounded-md bg-gray-50">
+                <p className="font-medium">{review.name}</p>
+                <div className="flex gap-1 text-yellow-500 mb-1">
+                  {[...Array(review.rating)].map((_, j) => (
+                    <img
+                      key={j}
+                      src={assets.star_icon}
+                      alt="star"
+                      className="w-4 h-4"
+                    />
+                  ))}
                 </div>
+                <p className="text-sm text-gray-600">{review.comment}</p>
               </div>
-              <p className="text-sm text-gray-600">{review.comment}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
-      <div className="mt-16">
-        <RelatedProducts
-          category={productData.category}
-          subCategory={productData.subCategory}
-        />
+      {/* Related Products */}
+      <div className="mt-12">
+        <RelatedProducts />
       </div>
     </div>
   );
 };
 
 export default Product;
+
