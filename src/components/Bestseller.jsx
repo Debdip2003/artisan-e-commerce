@@ -38,7 +38,7 @@ const Bestseller = () => {
                 id={item._id}
                 image={item.image}
                 name={item.name}
-                price={`${item.price.toLocaleString()}`}
+                price={`${item.price}`}
               />
 
               <div className="flex items-center justify-center mt-2">
