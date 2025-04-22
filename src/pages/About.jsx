@@ -138,10 +138,7 @@ const About = () => {
           </div>
         </div>
       </div>
-
-      <div className="mt-20 bg-gradient-to-r from-pink-100 via-yellow-100 to-orange-100 py-16">
-        <NewsletterBox />
-      </div>
+      <NewsletterBox />
     </div>
   );
 };

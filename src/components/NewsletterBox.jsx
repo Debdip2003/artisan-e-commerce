@@ -7,8 +7,8 @@ const NewsletterBox = () => {
 
   return (
     <div className="text-center">
-      <p className="text-2xl font-medium text-gray-800">
-        Subscribe now and get 20% off
+      <p className="text-2xl font-medium text-gray-800 mt-10">
+        Register here and get 20% off
       </p>
       <p className="text-gray-400 mt-3">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic,
@@ -28,7 +28,7 @@ const NewsletterBox = () => {
           type="submit"
           className="bg-black text-white text-xs px-10 py-4"
         >
-          SUBSCRIBE
+          REGISTER
         </button>
       </form>
     </div>

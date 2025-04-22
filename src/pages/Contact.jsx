@@ -25,8 +25,8 @@ const contactDetails = [
   },
   {
     icon: "🏬",
-    title: "Our Shop",
-    value: "13, J K Pal Road, Kolkata, 700038",
+    title: "Our Headquarters",
+    value: "64/4B/8 Dr SC Banerjee Road, Kolkata - 700010",
     description: "Drop by to explore our handcrafted products.",
     bg: "bg-gradient-to-br from-yellow-100 to-yellow-50",
   },
@@ -64,7 +64,9 @@ const Contact = () => {
       >
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative z-10">
-          <h1 className="text-5xl font-extrabold text-white drop-shadow-lg">Contact Us</h1>
+          <h1 className="text-5xl font-extrabold text-white drop-shadow-lg">
+            Contact Us
+          </h1>
           <p className="text-white mt-3 text-lg">
             We’re happy to assist you — drop us a message or call anytime.
           </p>

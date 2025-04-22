@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
-import Title from "./Title";
 import ProductItems from "./ProductItems";
 
 const Bestseller = () => {
@@ -19,7 +18,8 @@ const Bestseller = () => {
           Best Sellers
         </h2>
         <p className="mt-4 text-gray-600 max-w-xl mx-auto text-base sm:text-lg font-medium">
-          Discover our top-rated, most-loved handmade creations by talented artisans across India.
+          Discover our top-rated, most-loved handmade creations by talented
+          artisans across India.
         </p>
 
         <div className="mt-14 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
@@ -38,7 +38,7 @@ const Bestseller = () => {
                 id={item._id}
                 image={item.image}
                 name={item.name}
-                price={`₹{item.price.toLocaleString()}`}
+                price={`${item.price.toLocaleString()}`}
               />
 
               <div className="flex items-center justify-center mt-2">

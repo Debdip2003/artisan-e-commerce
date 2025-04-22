@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import shawl from "../assets/frontend_assets/shawlImage.webp";
 
 const ArtisanProfile = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([
     {
       id: 1,
@@ -13,7 +15,7 @@ const ArtisanProfile = () => {
       stock: 0,
       description:
         "Pure silk handwoven shawl with traditional motifs. Perfect for special occasions.",
-      image: "/images/silk-shawl.webp",
+      image: shawl,
     },
     {
       id: 2,
@@ -23,7 +25,7 @@ const ArtisanProfile = () => {
       stock: 5,
       description:
         "Handcrafted ceramic tea set with 6 cups and a teapot. Microwave safe.",
-      image: "/images/tea-set.jpeg",
+      image: shawl,
     },
     {
       id: 3,
@@ -33,7 +35,7 @@ const ArtisanProfile = () => {
       stock: 2,
       description:
         "Carved from sustainable sheesham wood. Approximately 8 inches tall.",
-      image: "/images/wooden-elephant.webp",
+      image: shawl,
     },
     {
       id: 4,
@@ -43,7 +45,7 @@ const ArtisanProfile = () => {
       stock: 0,
       description:
         "Hand block printed cotton saree with organic dyes. Breathable and comfortable.",
-      image: "/images/saree.jpg",
+      image: shawl,
     },
     {
       id: 5,
@@ -53,7 +55,7 @@ const ArtisanProfile = () => {
       stock: 3,
       description:
         "Traditional brass pooja thali with intricate engravings. Comes with diyas.",
-      image: "/images/pooja-thali.jpg",
+      image: shawl,
     },
   ]);
 
@@ -124,6 +126,36 @@ const ArtisanProfile = () => {
     setProducts(products.filter((product) => product.id !== productId));
   };
 
+  const handleGenerateCaption = async () => {
+    const prompt =
+      typeof newProduct?.prompt === "string" ? newProduct.prompt.trim() : "";
+    if (!prompt) {
+      alert("Please enter a short product idea or prompt first.");
+      return;
+    }
+
+    try {
+      setLoading(true); // Start loading
+      const response = await fetch("http://localhost:5000/generate-caption", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ product: prompt }),
+      });
+
+      const data = await response.json();
+      setNewProduct((prev) => ({
+        ...prev,
+        description: data.caption,
+      }));
+    } catch (error) {
+      console.error("Error generating caption:", error);
+      alert("Failed to generate caption. Please try again.");
+    } finally {
+      setLoading(false); // Stop loading
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow">
@@ -185,6 +217,7 @@ const ArtisanProfile = () => {
                   </label>
                   <input
                     type="text"
+                    placeholder="Enter product name"
                     name="name"
                     value={newProduct.name}
                     onChange={handleInputChange}
@@ -214,6 +247,7 @@ const ArtisanProfile = () => {
                   </label>
                   <input
                     type="number"
+                    placeholder="Enter stock quantity"
                     name="stock"
                     value={newProduct.stock}
                     onChange={handleInputChange}
@@ -224,18 +258,55 @@ const ArtisanProfile = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
-                    Description{" "}
-                    <span className="hover:cursor-pointer">
-                      (Generate Caption)
-                    </span>
+                    Original Product Location
                   </label>
+                  <input
+                    type="text"
+                    placeholder="Enter location (e.g., Jaipur, Rajasthan)"
+                    name="stock"
+                    value={newProduct.location}
+                    onChange={handleInputChange}
+                    required
+                    min="0"
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-black focus:border-black"
+                  />
+                </div>
+                <div>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      name="prompt"
+                      placeholder="Enter short prompt "
+                      value={newProduct.prompt}
+                      onChange={handleInputChange}
+                      className=" border p-2 rounded mb-4 w-[50%]"
+                    />
+                    {loading ? (
+                      <button
+                        type="button"
+                        disabled
+                        className=" bg-blue-300 text-white rounded cursor-not-allowed w-[50%] mb-4"
+                      >
+                        Generating...
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={handleGenerateCaption}
+                        className=" bg-blue-500 text-white rounded hover:bg-blue-600 w-[50%] mb-4"
+                      >
+                        Generate
+                      </button>
+                    )}
+                  </div>
                   <textarea
                     name="description"
+                    placeholder="Product Description"
                     value={newProduct.description}
                     onChange={handleInputChange}
-                    rows="3"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-black focus:border-black"
-                  ></textarea>
+                    className="w-full border p-2 rounded h-24"
+                    required
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
