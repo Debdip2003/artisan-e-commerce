@@ -12,9 +12,10 @@ const Collection = () => {
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
   const [sortType, setSortType] = useState("relevant");
-  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [priceRange, setPriceRange] = useState([100, 10000]);
   const [region, setRegion] = useState([]);
   const [culture, setCulture] = useState([]);
+  const [clickedProductId, setClickedProductId] = useState(null);
   const navigate = useNavigate();
 
   const toggleValue = (value, setFunction) => {
@@ -102,6 +103,7 @@ const Collection = () => {
   );
 
   const handleProductClick = (product) => {
+    setClickedProductId(product._id);
     navigate(`/product/${product._id}`, { state: product });
   };
 
@@ -120,23 +122,20 @@ const Collection = () => {
         </div>
 
         <FilterSection title="CATEGORIES" options={["Men", "Women", "Kids"]} selected={category} toggle={setCategory} />
-
         <FilterSection title="CRAFT TYPE" options={["Handwoven", "Embroidery", "Terracotta", "Beadwork", "Block Printing", "Bamboo Craft", "Stone Carving", "Woodwork", "Metalwork", "Leather Craft", "Loom Weaving", "Madhubani Painting", "Warli Art"]} selected={subCategory} toggle={setSubCategory} />
-
         <FilterSection title="REGION" options={["North", "Northeast", "East", "West", "South"]} selected={region} toggle={setRegion} />
-
         <FilterSection title="CULTURE" options={["Punjabi", "Gujarati", "Rajasthani", "Bengali", "Tamil", "Malayali", "Kashmiri", "Marathi", "Assamese / Northeastern", "Kannadiga", "Telugu", "Bihari", "Odia", "Goan", "Himachali"]} selected={culture} toggle={setCulture} />
 
         <div className={`border border-gray-200 rounded-lg shadow-md p-5 mt-6 bg-white ${showFilter ? "" : "hidden"} sm:block transition-all duration-300`}>
           <p className="mb-3 text-lg font-semibold text-gray-800 flex items-center">PRICE RANGE</p>
           <div className="space-y-4">
             <div className="flex justify-between text-sm text-gray-600">
-              <span>${priceRange[0]}</span>
-              <span>${priceRange[1]}</span>
+              <span>₹{priceRange[0]}</span>
+              <span>₹{priceRange[1]}</span>
             </div>
             <div className="flex space-x-4">
-              <input type="range" min="0" max="1000" value={priceRange[0]} onChange={(e) => handlePriceChange(e, 0)} className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" />
-              <input type="range" min="0" max="1000" value={priceRange[1]} onChange={(e) => handlePriceChange(e, 1)} className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" />
+              <input type="range" min="100" max="10000" value={priceRange[0]} onChange={(e) => handlePriceChange(e, 0)} className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" />
+              <input type="range" min="100" max="10000" value={priceRange[1]} onChange={(e) => handlePriceChange(e, 1)} className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" />
             </div>
           </div>
         </div>
@@ -160,7 +159,7 @@ const Collection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filterProducts.map((product, index) => (
             <div key={index} onClick={() => handleProductClick(product)} className="cursor-pointer">
-              <ProductItem {...product} />
+              <ProductItem {...product} showPrice={clickedProductId === product._id} />
             </div>
           ))}
         </div>
