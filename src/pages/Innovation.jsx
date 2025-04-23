@@ -1,63 +1,66 @@
-import React from 'react';
-import { assets } from '../assets/frontend_assets/assets';
-import './Innovation.css';
+import React from "react";
+import { assets } from "../assets/frontend_assets/assets";
+import "./Innovation.css";
 
 const Innovation = () => {
   const tutorials = [
     {
       id: 1,
       title: "Natural Dye Extraction",
-      description: "Learn how artisans create vibrant colors using plants, flowers, and minerals instead of synthetic dyes. This ancient technique produces no chemical runoff and creates unique, earth-friendly hues.",
+      description:
+        "Learn how artisans create vibrant colors using plants, flowers, and minerals instead of synthetic dyes. This ancient technique produces no chemical runoff and creates unique, earth-friendly hues.",
       videoId: "d9B6NTPCOjA",
       benefits: [
         "100% biodegradable materials",
         "No toxic chemicals in water systems",
         "Supports local plant biodiversity",
-        "Creates unique, seasonal colors"
+        "Creates unique, seasonal colors",
       ],
       materials: [
         "Turmeric (yellow)",
         "Indigo leaves (blue)",
         "Pomegranate rinds (gold)",
-        "Madder root (red)"
-      ]
+        "Madder root (red)",
+      ],
     },
     {
       id: 2,
       title: "Handmade Paper from Agricultural Waste",
-      description: "Discover how crop residues are transformed into beautiful, sturdy paper. This process gives new life to materials that would otherwise be burned, reducing air pollution.",
+      description:
+        "Discover how crop residues are transformed into beautiful, sturdy paper. This process gives new life to materials that would otherwise be burned, reducing air pollution.",
       videoId: "FOb34_s-K1M",
       benefits: [
         "Utilizes rice straw, banana stems, and cotton rags",
         "Zero chemical bleaching process",
         "Saves trees by using agricultural byproducts",
-        "Biodegradable and compostable"
+        "Biodegradable and compostable",
       ],
       materials: [
         "Rice straw",
         "Banana plant stems",
         "Cotton fabric scraps",
-        "Natural binders like starch"
-      ]
+        "Natural binders like starch",
+      ],
     },
     {
       id: 3,
       title: "Terracotta Without Kiln Firing",
-      description: "Traditional sun-baked clay techniques that eliminate the need for fuel-intensive kilns. These methods have been used for centuries to create durable pottery with minimal environmental impact.",
+      description:
+        "Traditional sun-baked clay techniques that eliminate the need for fuel-intensive kilns. These methods have been used for centuries to create durable pottery with minimal environmental impact.",
       videoId: "qgRNWLxIEz0",
       benefits: [
         "No fossil fuels required",
         "Uses locally-sourced clay",
         "Natural cooling process",
-        "Creates porous vessels ideal for water cooling"
+        "Creates porous vessels ideal for water cooling",
       ],
       materials: [
         "Local clay deposits",
         "Rice husk for tempering",
         "Natural polishing stones",
-        "Plant-based sealants"
-      ]
-    }
+        "Plant-based sealants",
+      ],
+    },
   ];
 
   return (
@@ -74,8 +77,10 @@ const Innovation = () => {
         <div className="container">
           <h2>Eco-Conscious Artisanry</h2>
           <p>
-            For generations, artisans have developed sustainable production methods that work in harmony with nature. 
-            These time-tested techniques offer solutions to modern environmental challenges while preserving cultural heritage.
+            For generations, artisans have developed sustainable production
+            methods that work in harmony with nature. These time-tested
+            techniques offer solutions to modern environmental challenges while
+            preserving cultural heritage.
           </p>
         </div>
       </section>
@@ -91,7 +96,7 @@ const Innovation = () => {
             <div key={tutorial.id} className="tutorial-card">
               <div className="tutorial-media">
                 <div className="video-container">
-                  <iframe 
+                  <iframe
                     src={`https://www.youtube.com/embed/${tutorial.videoId}`}
                     title={tutorial.title}
                     frameBorder="0"
@@ -103,7 +108,7 @@ const Innovation = () => {
               <div className="tutorial-content">
                 <h3>{tutorial.title}</h3>
                 <p>{tutorial.description}</p>
-                
+
                 <div className="tutorial-details">
                   <div className="details-column">
                     <h4>Environmental Benefits:</h4>
@@ -133,7 +138,8 @@ const Innovation = () => {
           <div className="impact-content">
             <h2>Our Environmental Impact</h2>
             <p>
-              By supporting these traditional techniques, our artisan partners have collectively:
+              By supporting these traditional techniques, our artisan partners
+              have collectively:
             </p>
             <div className="impact-stats">
               <div className="stat-item">
@@ -142,7 +148,9 @@ const Innovation = () => {
               </div>
               <div className="stat-item">
                 <div className="stat-number">28,000+</div>
-                <div className="stat-label">Liters of clean water preserved</div>
+                <div className="stat-label">
+                  Liters of clean water preserved
+                </div>
               </div>
               <div className="stat-item">
                 <div className="stat-number">0</div>
@@ -159,7 +167,8 @@ const Innovation = () => {
       <section className="innovation-cta">
         <h2>Join the Sustainable Craft Movement</h2>
         <p>
-          Learn these techniques directly from master artisans through our apprenticeship programs
+          Learn these techniques directly from master artisans through our
+          apprenticeship programs
         </p>
         <div className="cta-buttons">
           <button className="primary-btn">Explore Workshops</button>
